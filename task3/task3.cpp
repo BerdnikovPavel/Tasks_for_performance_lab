@@ -23,21 +23,21 @@ json detour(json& Doc, map<int, string> res)
     return Doc;
 }
 
-int main()
+int main(int argc, char* argv[])
 {
     setlocale(LC_ALL, "Russian");
 
-    string testsJson, valuesJson;
+    if (argc < 3)
+    {
+        cout << "Вы должны указать имена файлов";
+        exit(1);
+    }
+
     json DataTests;
     json DataValues;
     map<int, string>results;
 
-    cout << "введите путь к файлу tests.json" << endl;
-    cin >> testsJson;
-    cout << "введите путь к файлу values.json" << endl;
-    cin >> valuesJson;
-
-    ifstream tests(testsJson);
+    ifstream tests(argv[1]);
     if(tests.is_open())
     {
         tests >> DataTests;
@@ -49,7 +49,7 @@ int main()
     }
     tests.close();
 
-    ifstream values(valuesJson);
+    ifstream values(argv[2]);
     if (values.is_open())
     {
         values >> DataValues;

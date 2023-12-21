@@ -3,20 +3,20 @@
 
 using namespace std;
 
-int main()
+int main(int argc, char* argv[])
 {
     setlocale(LC_ALL, "Russian");
 
-    string pathToFile1, pathToFile2;
     float x, y;
     unsigned int R;
 
-    cout << "введите путь к файлу с координатами центра окружности и ее радиусом: ";
-    cin >> pathToFile1;
-    cout << "введите путь к файлу с координатами точек: ";
-    cin >> pathToFile2;
+    if (argc < 3)
+    {
+        cout << "Вы должны указать имена файлов";
+        exit(1);
+    }
 
-    ifstream f1(pathToFile1);
+    ifstream f1(argv[1]);
     if (f1.is_open())
     {
         f1 >> x;
@@ -30,7 +30,7 @@ int main()
     }
     f1.close();
 
-    ifstream f2(pathToFile2);
+    ifstream f2(argv[2]);
     if (f2.is_open())
     {
         while (!f2.eof())

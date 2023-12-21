@@ -5,18 +5,20 @@
 
 using namespace std;
 
-int main()
+int main(int argc, char* argv[])
 {
     setlocale(LC_ALL, "Russian");
 
-    string pathToFile;
+    if (argc < 2)
+    {
+        cout << "Вы должны указать имя файла";
+        exit(1);
+    }
+
     vector<int> v;
     int result = 0;
 
-    cout << "введите путь к файлу:" << endl;
-    cin >> pathToFile;
-
-    ifstream file(pathToFile);
+    ifstream file(argv[1]);
     if (file.is_open())
     {
         while (!file.eof())
